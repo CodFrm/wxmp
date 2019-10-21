@@ -6,7 +6,7 @@ import (
 
 func Handel(r *gin.Engine) *gin.Engine {
 	rg := r.Group("/wchat")
-	rg.GET("/verification", Validate)
+	rg.GET("/validate", Validate)
 
 	return r
 }
