@@ -10,10 +10,13 @@ jobs:
   docker-push:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Build the Docker image
-      run: |
-        - docker build . --file Dockerfile --tag codfrm/wxmp:latest
-        - docker login --username=codfrm -p $DOCKER_TOKEN
-        - docker push codfrm/wxmp:latest
+      - uses: azure/docker-login@v1
+        with:
+          login-server: contoso.azurecr.io
+          username: codfrm
+          password: ${{ secrets.DOCKER_TOKEN }}
+      - name: Build the Docker image
+        run: |
+          docker build . --file Dockerfile --tag codfrm/wxmp:latest
+          docker push codfrm/wxmp:latest
 
