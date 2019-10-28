@@ -13,10 +13,10 @@ var config = &wechat.Config{}
 var addr string
 
 func init() {
-	flag.StringVar(&config.AppID, "wc_app_id", "", "")
-	flag.StringVar(&config.AppSecret, "wc_app_secret", "", "")
-	flag.StringVar(&config.EncodingAESKey, "wc_encode_aes_key", "", "")
-	flag.StringVar(&config.Token, "wc_token", "", "")
+	flag.StringVar(&config.AppID, "wx_app_id", "", "")
+	flag.StringVar(&config.AppSecret, "wx_app_secret", "", "")
+	flag.StringVar(&config.EncodingAESKey, "wx_encode_aes_key", "", "")
+	flag.StringVar(&config.Token, "wx_token", "", "")
 	flag.StringVar(&addr, "server_addr", ":8080", "")
 	flag.Parse()
 }

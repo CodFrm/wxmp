@@ -5,8 +5,7 @@ import (
 )
 
 func Handel(r *gin.Engine) *gin.Engine {
-	rg := r.Group("/wchat")
-	rg.GET("/validate", Validate)
+	r.Any("/wchat", Wchat)
 
 	return r
 }
