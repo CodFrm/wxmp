@@ -1,0 +1,19 @@
+name: deploy
+
+on: 
+  push:
+    branches:
+      - master
+
+jobs:
+
+  docker-push:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image
+      run: |
+        - docker build . --file Dockerfile --tag codfrm/wxmp:latest
+        - docker login --username=codfrm -p $DOCKER_TOKEN
+        - docker push codfrm/wxmp:latest
+
