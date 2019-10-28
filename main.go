@@ -25,7 +25,6 @@ func main() {
 	wc := wechat.NewWechat(config)
 	wchat.Init(wc)
 	r := gin.Default()
-	api.Handel(r)
 	if err := api.Handel(r).Run(addr); err != nil {
 		log.Fatal(err)
 	}
