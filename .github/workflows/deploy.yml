@@ -13,7 +13,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build the Docker image
       run: |
-      - docker build . --file Dockerfile --tag codfrm/wxmp:latest
-      - docker login --username=codfrm -p $DOCKER_TOKEN
-      - docker push codfrm/wxmp:latest
+        - docker build . --file Dockerfile --tag codfrm/wxmp:latest
+        - docker login --username=codfrm -p $DOCKER_TOKEN
+        - docker push codfrm/wxmp:latest
 
