@@ -6,6 +6,7 @@ import (
 	"github.com/CodFrm/wxmp/internal/wchat"
 	"github.com/gin-gonic/gin"
 	"github.com/silenceper/wechat"
+	"github.com/silenceper/wechat/cache"
 	"log"
 )
 
@@ -22,6 +23,7 @@ func init() {
 }
 
 func main() {
+	config.Cache = cache.NewMemory()
 	wc := wechat.NewWechat(config)
 	wchat.Init(wc)
 	r := gin.Default()
