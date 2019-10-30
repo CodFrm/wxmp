@@ -20,6 +20,14 @@ func TestWechat_WxHandel(t *testing.T) {
 	})
 	qqtoken := reply.MsgData.(*message.Text).Content
 
+	reply = handel(message.MixMessage{
+		CommonToken: message.CommonToken{
+			FromUserName: "sq",
+			MsgType:      message.MsgTypeText,
+		},
+		Content: "申请token",
+	})
+	assert.Equal(t, len(reply.MsgData.(*message.Text).Content), 11)
 	//绑定token
 	reply = handel(message.MixMessage{
 		CommonToken: message.CommonToken{
@@ -72,6 +80,6 @@ func TestWechat_WxHandel(t *testing.T) {
 		},
 		Content: "token",
 	})
-	assert.Equal(t, "你还没有token,请选择绑定token或者申请token", reply.MsgData.(*message.Text).Content)
+	assert.Equal(t, "你还没有token,请可以发送 qq号码+token 将原有的token和微信公众号进行绑定,例如: 88888888+ilyedbyd (绑定成功自动增加100点),发送 \"申请token\" 可申请一个新的token.", reply.MsgData.(*message.Text).Content)
 
 }

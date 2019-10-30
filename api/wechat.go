@@ -37,6 +37,12 @@ func (w *Wechat) WxHandel() func(message.MixMessage) *message.Reply {
 			{
 				if msg.Content == "token" {
 					content = w.getToken(msg.FromUserName)
+				} else if msg.Content == "申请token" {
+					if token, err := w.token.CreateToken(msg.FromUserName); err != nil {
+						content = err.Error()
+					} else {
+						content = token
+					}
 				} else if regex, err := regexp.Compile(`^(\d+)\+(\w+)`); err == nil {
 					str := regex.FindStringSubmatch(msg.Content)
 					if str != nil {
@@ -69,6 +75,8 @@ func (w *Wechat) WxHandel() func(message.MixMessage) *message.Reply {
 							}
 						}
 					}
+				} else if msg.Event == message.EventSubscribe {
+					content = "欢迎关注icodef.com"
 				}
 			}
 		}
@@ -83,7 +91,7 @@ func (w *Wechat) WxHandel() func(message.MixMessage) *message.Reply {
 func (w *Wechat) getToken(uid string) string {
 	if t, err := w.token.FindByUserID(uid); err != nil {
 		if err == redis.Nil {
-			return "你还没有token,请选择绑定token或者申请token"
+			return "你还没有token,请可以发送 qq号码+token 将原有的token和微信公众号进行绑定,例如: 88888888+ilyedbyd (绑定成功自动增加100点),发送 \"申请token\" 可申请一个新的token."
 		}
 		return err.Error()
 	} else {
