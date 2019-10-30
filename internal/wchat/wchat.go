@@ -3,13 +3,14 @@ package wchat
 import (
 	"github.com/silenceper/wechat"
 	"github.com/silenceper/wechat/menu"
+	"log"
 )
 
 var WChat *wechat.Wechat
 
 func Init(wc *wechat.Wechat) {
 	mu := wc.GetMenu()
-	mu.SetMenu([]*menu.Button{{
+	err := mu.SetMenu([]*menu.Button{{
 		Name: "token菜单",
 		SubButtons: []*menu.Button{{
 			Type: "click",
@@ -25,5 +26,8 @@ func Init(wc *wechat.Wechat) {
 			Key:  "create",
 		}},
 	}})
+	if err != nil {
+		log.Printf(err.Error())
+	}
 	WChat = wc
 }
