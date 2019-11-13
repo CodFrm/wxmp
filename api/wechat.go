@@ -38,7 +38,7 @@ func (w *Wechat) Wchat() gin.HandlerFunc {
 
 func (w *Wechat) WxHandel() func(message.MixMessage) *message.Reply {
 	return func(msg message.MixMessage) (ret *message.Reply) {
-		content := "^_^"
+		content := "发送查+题目内容即可查询题目答案(eg.查 我们通常所说的历史就是二阶历史),访问地址: http://cx.icodef.com/query.html 也可以进行查询哦,发送token可以查看token相关命令"
 		defer func() {
 			ret = &message.Reply{
 				MsgType: message.MsgTypeText,
