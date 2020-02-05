@@ -132,7 +132,7 @@ func (w *Wechat) WxHandel() func(message.MixMessage) *message.Reply {
 						}
 					case "bind":
 						{
-							content = "请发送 qq号码+token 将原有的token和微信公众号进行绑定,例如: 88888888+ilyedbyd (绑定成功自动增加100点)"
+							content = "可以发送 qq号码+token 将原有的token和微信公众号进行绑定,例如: 88888888+ilyedbyd (绑定成功自动增加100点)"
 						}
 					case "create":
 						{
@@ -159,7 +159,7 @@ func (w *Wechat) WxHandel() func(message.MixMessage) *message.Reply {
 func (w *Wechat) getToken(uid string) string {
 	if t, err := w.token.FindByUserID(uid); err != nil {
 		if err == redis.Nil {
-			return "你还没有token,请可以发送 qq号码+token 将原有的token和微信公众号进行绑定,例如: 88888888+ilyedbyd (绑定成功自动增加100点),发送 \"申请token\" 可申请一个新的token."
+			return "你还没有token,可以发送 qq号码+token 将原有的token和微信公众号进行绑定,例如: 88888888+ilyedbyd (绑定成功自动增加100点),如果没有token,发送 \"申请token\" 可申请一个新的token."
 		}
 		return err.Error()
 	} else {
