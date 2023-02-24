@@ -14,5 +14,5 @@ require (
 	github.com/silenceper/wechat v2.0.0+incompatible
 	github.com/stretchr/testify v1.4.0
 	github.com/yuin/gopher-lua v0.0.0-20190514113301-1cd887cd7036 // indirect
-	golang.org/x/net v0.0.0-20190503192946-f4e77d36d62c // indirect
+	golang.org/x/net v0.7.0 // indirect
 )
